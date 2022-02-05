@@ -1,323 +1,556 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title><?php bloginfo('name'); ?></title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/blog/">
+<?php
 
 
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+get_header();
 
 
+$queryAbout = new WP_Query(array('category_name' => 'about'));
+$queryApp = new WP_Query(array('category_name' => 'app'));
+// $helpinfo_loop = new Query([
+//     'posts_per_page' => 3,
+//     'post__in' => get_option('sticky_posts'),
 
-    <!-- Favicons 
-    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
--->
-    <meta name="theme-color" content="#7952b3">
+// ]);
+
+?>
+
+<!-- # site-content
+        ================================================== -->
+<section id="content" class="s-content">
 
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+    <!-- intro
+            ----------------------------------------------- -->
+    <section id="intro" class="s-intro target-section">
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+        <div class="s-intro__bg" style="background-image: url('<?php header_image() ?>')"></div>
+
+        <div class="row s-intro__content">
+
+            <div class="column lg-12 s-intro__content-inner">
+                <div class="s-intro__content-left">
+                    <h1 class="s-intro__content-title">
+                        An Amazing App <br>
+                        That Does It All.
+                    </h1>
+                </div>
+                <div class="s-intro__content-right">
+                    <p class="s-intro__content-desc body-text-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Mattis lacus interdum dictum dolor sit amet lectus ornare nunc non.
+                    </p>
+
+                    <div class="s-intro__content-buttons">
+                        <a href="#download" class="btn btn--primary s-intro__content-btn smoothscroll">Get Started</a>
+                        <a href="https://player.vimeo.com/video/14592941?color=00a650&title=0&byline=0&portrait=0" class="s-intro__content-video-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                <path d="M7 6v12l10-6z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div> <!-- s-intro__content-inner -->
+
+        </div> <!-- s-intro__content -->
+
+        <!-- s-intro__social -->
+        <?php
+        wp_nav_menu([
+            'theme_location' => 'Khater-social-menu',
+            'container' => '',
+            'menu_class' => 's-intro__social',
+            'depth' => 1,
+
+        ]);
+
+        ?>
+        <!-- <ul class="s-intro__social">
+            <li>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+                        <path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path>
+                    </svg>
+                    <span class="u-screen-reader-text">Facebook</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+                        <path d="M19.633,7.997c0.013,0.175,0.013,0.349,0.013,0.523c0,5.325-4.053,11.461-11.46,11.461c-2.282,0-4.402-0.661-6.186-1.809 c0.324,0.037,0.636,0.05,0.973,0.05c1.883,0,3.616-0.636,5.001-1.721c-1.771-0.037-3.255-1.197-3.767-2.793 c0.249,0.037,0.499,0.062,0.761,0.062c0.361,0,0.724-0.05,1.061-0.137c-1.847-0.374-3.23-1.995-3.23-3.953v-0.05 c0.537,0.299,1.16,0.486,1.82,0.511C3.534,9.419,2.823,8.184,2.823,6.787c0-0.748,0.199-1.434,0.548-2.032 c1.983,2.443,4.964,4.04,8.306,4.215c-0.062-0.3-0.1-0.611-0.1-0.923c0-2.22,1.796-4.028,4.028-4.028 c1.16,0,2.207,0.486,2.943,1.272c0.91-0.175,1.782-0.512,2.556-0.973c-0.299,0.935-0.936,1.721-1.771,2.22 c0.811-0.088,1.597-0.312,2.319-0.624C21.104,6.712,20.419,7.423,19.633,7.997z"></path>
+                    </svg>
+                    <span class="u-screen-reader-text">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+                        <path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path>
+                        <circle cx="16.806" cy="7.207" r="1.078"></circle>
+                        <path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path>
+                    </svg>
+                    <span class="u-screen-reader-text">Instagram</span>
+                </a>
+            </li>
+        </ul> -->
+
+        <div class="s-intro__scroll">
+            <a href="#about" class="smoothscroll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: rotate(270deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);">
+                    <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                </svg>
+                <span class="u-screen-reader-text">Scroll</span>
+            </a>
+        </div> <!-- s-intro__scroll -->
+
+    </section> <!-- end s-intro -->
+
+
+    <!-- about
+            ----------------------------------------------- -->
+    <section id="about" class="s-about target-section">
+
+
+        <!-- stats -->
+        <div class="row block-lg-one-fourth block-tab-one-half block-stack s-about__stats">
+            <?php
+            // if (have_posts()) :
+            //     while (have_posts()) :
+            //         the_post();
+
+            ?>
+
+
+            <div class="column s-about__stats-item">
+                <div class="s-about__stats-count">554<span>k</span></div>
+                <h5>Total Downloads</h5>
+            </div>
+
+            <?php
+            //     endwhile;
+            // endif;
+            ?>
+
+            <div class="column s-about__stats-item">
+                <div class="s-about__stats-count">22<span>k</span></div>
+                <h5>Daily Visitors</h5>
+            </div>
+            <div class="column s-about__stats-item">
+                <div class="s-about__stats-count">99<span>%</span></div>
+                <h5>Positive Rating</h5>
+            </div>
+            <div class="column s-about__stats-item">
+                <div class="s-about__stats-count">526<span>k</span></div>
+                <h5>Happy Users</h5>
+            </div>
+
+        </div> <!-- end stats -->
+
+
+        <!-- intro info -->
+        <div class="s-about__info">
+
+            <div class="row section-header" data-num="01">
+                <div class="column lg-6 stack-on-1000 title-block">
+                    <h2 class="title text-display-1">Getting Started With Booth.</h2>
+                </div>
+                <div class="column lg-6 stack-on-1000 desc-block">
+                    <p class="desc lead">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, sit pretium,
+                        proin sed massa maecenas tempus, nibh. Ultrices pellentesque amet tristique
+                        feugiat condimentum integer fames.
+                    </p>
+                </div>
+            </div>
+            <?php //if ($helpinfo_loop->have_posts()) : 
+            ?>
+            <div class="row s-about__info-slider-block">
+                <div class="column lg-12">
+
+                    <div class="swiper-container s-about__info-slider">
+                        <div class="swiper-wrapper">
+                            <?php
+                            if ($queryAbout->have_posts()) :
+                                // while (have_posts()) :
+                                //     the_post();
+
+
+                                while ($queryAbout->have_posts()) :
+                                    $queryAbout->the_post();
+
+                            ?>
+                                    <div class="s-about__info-slide swiper-slide">
+                                        <h4 class="h5">
+                                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+                                        </h4>
+
+                                        <p>
+                                            <?php the_excerpt() ?>
+                                        </p>
+                                        <a href="<?php the_permalink(); ?>">Read more...</a>
+                                    </div> <!-- end s-about__info-slide  -->
+                            <?php
+                                endwhile;
+                            endif;
+                            wp_reset_postdata();
+                            ?>
+
+
+                        </div> <!-- swiper-wrapper -->
+
+                        <div class="swiper-pagination">
+                            <?php get_the_posts_pagination() ?>
+                        </div>
+
+                    </div> <!-- end swiper-container -->
+
+                </div>
+            </div> <!-- end s-about__info-slider-block -->
+            <?php
+            // endif;
+            // wp_reset_postdata();
+            ?>
+        </div> <!-- end s-about__info -->
+
+
+        <!-- screens -->
+        <div class="row s-about__screens-block">
+            <div class="column lg-12">
+
+                <div class="s-about__screens">
+
+
+                    <div class="s-about__screen">
+                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-03.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-03.png') ?> 1x,<?= get_theme_file_uri('assets/images/screens/screen-03@2x.png') ?> 2x" alt="">
+                    </div>
+
+
+                    <div class="s-about__screen">
+                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-02.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-02.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-02@2x.png') ?> 2x" alt="">
+                    </div>
+                    <div class="s-about__screen">
+                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?>>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?> 1x,<?= get_theme_file_uri('assets/images/screens/screen-01@2x.png') ?> 2x" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div> <!-- end screens -->
+
+
+        <!-- how-to -->
+        <div class="s-about__howto">
+
+            <div class="row section-header" data-num="02">
+                <div class="column lg-12 title-block">
+                    <h2 class="title text-display-1">How the App Works.</h2>
+                </div>
+            </div>
+
+            <div class="row s-about__howto-content">
+
+                <div class="column s-about__howto-process-block">
+
+                    <div class="s-about__howto-process">
+                        <?php
+                        if ($queryApp->have_posts()) :
+                            while ($queryApp->have_posts()) :
+                                $queryApp->the_post();
+                        ?>
+                                <div class="s-about__howto-process-step">
+                                    <h3 class="h5"><?php the_title(); ?></h3>
+                                    <p>
+                                        <?php the_excerpt(); ?>
+                                    </p>
+                                </div>
+                        <?php
+                            endwhile;
+                        endif;
+                        ?>
+                    </div> <!-- end how-to process -->
+
+                </div>
+
+                <div class="column s-about__howto-screens-block">
+
+                    <div class="s-about__howto-screens">
+                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-01@2x.png') ?> 2x" alt="">
+                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-04.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-04.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-04@2x.png') ?> 2x" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- end how-to -->
+
+
+        <!-- features -->
+        <div class="s-about__features">
+
+            <div class="row section-header" data-num="03">
+                <div class="column lg-6 stack-on-1000 title-block">
+                    <h2 class="title text-display-1">The Best Features of The App.</h2>
+                </div>
+                <div class="column lg-6 stack-on-1000 desc-block">
+                    <p class="desc lead">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, sit pretium,
+                        proin sed massa maecenas tempus, nibh. Ultrices pellentesque amet tristique
+                        feugiat condimentum integer fames.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row s-about__feature-list block-lg-one-third">
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M18.944 11.112C18.507 7.67 15.56 5 12 5 9.244 5 6.85 6.611 5.757 9.15 3.609 9.792 2 11.82 2 14c0 2.757 2.243 5 5 5h11c2.206 0 4-1.794 4-4a4.01 4.01 0 0 0-3.056-3.888zM18 17H7c-1.654 0-3-1.346-3-3 0-1.404 1.199-2.756 2.673-3.015l.581-.102.192-.558C8.149 8.274 9.895 7 12 7c2.757 0 5 2.243 5 5v1h1c1.103 0 2 .897 2 2s-.897 2-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Cloud Based</h3>
+                        <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium.
+                            Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
+                            Sunt suscipit voluptas ipsa in tempora esse soluta sint aliquam rhoncus elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M18 7c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-3.333L22 17V7l-4 3.333V7zm-1.998 10H4V7h12l.001 4.999L16 12l.001.001.001 4.999z"></path>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Voice & Video</h3>
+                        <p>Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est. Quis risus sed vulputate
+                            odio ut. Lectus arcu bibendum at varius vel. Lorem ipsum dolor sit amet consectetur adipiscing
+                            elit pellentesque. In nulla posuere sollicitudin aliquam ultrices.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M20.995 6.9a.998.998 0 0 0-.548-.795l-8-4a1 1 0 0 0-.895 0l-8 4a1.002 1.002 0 0 0-.547.795c-.011.107-.961 10.767 8.589 15.014a.987.987 0 0 0 .812 0c9.55-4.247 8.6-14.906 8.589-15.014zM12 19.897C5.231 16.625 4.911 9.642 4.966 7.635L12 4.118l7.029 3.515c.037 1.989-.328 9.018-7.029 12.264z"></path>
+                            <path d="m11 12.586-2.293-2.293-1.414 1.414L11 15.414l5.707-5.707-1.414-1.414z"></path>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Always Secure</h3>
+                        <p>Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Eu scelerisque felis
+                            imperdiet proin fermentum leo. Cursus turpis massa tincidunt dui. Quis commodo odio aenean sed
+                            adipiscing diam donec adipiscing. Congue mauris rhoncus elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M22 8.65A5 5 0 0 0 17 4H7a5 5 0 0 0-5 4.74A2 2 0 0 0 2 9v7.5A3.48 3.48 0 0 0 5.5 20c1.43 0 2.32-1.06 3.19-2.09.32-.37.65-.76 1-1.1a4.81 4.81 0 0 1 1.54-.75 6.61 6.61 0 0 1 1.54 0 4.81 4.81 0 0 1 1.54.75c.35.34.68.73 1 1.1.87 1 1.76 2.09 3.19 2.09a3.48 3.48 0 0 0 3.5-3.5V9a2.09 2.09 0 0 0 0-.26zm-2 7.85a1.5 1.5 0 0 1-1.5 1.5c-.5 0-1-.64-1.66-1.38-.34-.39-.72-.85-1.15-1.26a6.68 6.68 0 0 0-2.46-1.25 6.93 6.93 0 0 0-2.46 0 6.68 6.68 0 0 0-2.46 1.25c-.43.41-.81.87-1.15 1.26C6.54 17.36 6 18 5.5 18A1.5 1.5 0 0 1 4 16.5V9a.77.77 0 0 0 0-.15A3 3 0 0 1 7 6h10a3 3 0 0 1 3 2.72v.12A.86.86 0 0 0 20 9z"></path>
+                            <circle cx="16" cy="12" r="1"></circle>
+                            <circle cx="18" cy="10" r="1"></circle>
+                            <circle cx="16" cy="8" r="1"></circle>
+                            <circle cx="14" cy="10" r="1"></circle>
+                            <circle cx="8" cy="10" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Play Games</h3>
+                        <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium.
+                            Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
+                            Sunt suscipit voluptas ipsa in tempora esse soluta sint donec adipiscing.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M16 2H8C4.691 2 2 4.691 2 8v12a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm4 13c0 2.206-1.794 4-4 4H4V8c0-2.206 1.794-4 4-4h8c2.206 0 4 1.794 4 4v7z"></path>
+                            <circle cx="9.5" cy="11.5" r="1.5"></circle>
+                            <circle cx="14.5" cy="11.5" r="1.5"></circle>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Group Chat</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Venenatis lectus magna fringilla urna. Lectus vestibulum
+                            mattis ullamcorper velit sed ullamcorper morbi. Sit amet aliquam.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column s-about__feature-item">
+                    <div class="s-about__feature-icon-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path d="M16 12h2v4h-2z"></path>
+                            <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5a1.001 1.001 0 0 1 0-2zm15 14H5.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"></path>
+                        </svg>
+                    </div>
+                    <div class="s-about__feature-text">
+                        <h3 class="h5">Payments</h3>
+                        <p>Nullam eget felis eget nunc. Adipiscing commodo elit at imperdiet dui accumsan. Condimentum
+                            mattis pellentesque id nibh tortor id aliquet lectus proin. Orci eu lobortis elementum nibh
+                            tellus. Tortor vitae purus faucibus ornare suspendisse.
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- end features-list -->
+
+        </div> <!-- end features -->
+
+    </section> <!-- end s-about -->
+
+
+    <!-- testimonials
+            ----------------------------------------------- -->
+    <section id="testimonials" class="s-testimonials">
+
+        <div class="row narrow text-center s-testimonials__header">
+            <div class="column lg-12">
+                <h3 class="h2">What Our Users Have To Say.</h3>
+            </div>
+        </div>
+
+        <div class="row s-testimonials__content">
+            <div class="column lg-12">
+
+                <div class="swiper-container s-testimonials__slider">
+
+                    <div class="swiper-wrapper">
+
+                        <div class="s-testimonials__slide swiper-slide">
+                            <div class="s-testimonials__author">
+                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-02.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
+                                <cite class="s-testimonials__cite">
+                                    <strong>Tim Cook</strong>
+                                    <span>CEO, Apple</span>
+                                </cite>
+                            </div>
+                            <p>
+                                Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem.
+                                Explicabo a quaerat sint autem dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga rem nihil nostrum.
+                                Laudantium quia consequatur molestias.
+                            </p>
+                        </div> <!-- end s-testimonials__slide -->
+
+                        <div class="s-testimonials__slide swiper-slide">
+                            <div class="s-testimonials__author">
+                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-03.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
+                                <cite class="s-testimonials__cite">
+                                    <strong>Sundar Pichai</strong>
+                                    <span>CEO, Google</span>
+                                </cite>
+                            </div>
+                            <p>
+                                Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
+                                Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
+                                Quasi voluptas eius distinctio. Atque eos maxime.
+                            </p>
+                        </div> <!-- end s-testimonials__slide -->
+
+                        <div class="s-testimonials__slide swiper-slide">
+                            <div class="s-testimonials__author">
+                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-01.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
+                                <cite class="s-testimonials__cite">
+                                    <strong>Satya Nadella</strong>
+                                    <span>CEO, Microsoft</span>
+                                </cite>
+                            </div>
+                            <p>
+                                Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
+                                Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
+                                Voluptatem dignissimos ut.
+                            </p>
+                        </div> <!-- end s-testimonials__slide -->
+
+                        <div class="s-testimonials__slide swiper-slide">
+                            <div class="s-testimonials__author">
+                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-06.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
+                                <cite class="s-testimonials__cite">
+                                    <strong>Jeff Bezos</strong>
+                                    <span>CEO, Amazon</span>
+                                </cite>
+                            </div>
+                            <p>
+                                Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis
+                                quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit.
+                                Nihil ea quia nesciunt. Ducimus aut sed ipsam.
+                            </p>
+                        </div> <!-- end s-testimonials__slide -->
+
+                    </div> <!-- end swiper-wrapper -->
+
+                    <div class="swiper-pagination"></div>
+
+                </div> <!-- end swiper-container -->
+
+            </div> <!-- end column -->
+        </div> <!-- end s-testimonials__content -->
+
+    </section> <!-- end testimonials -->
+
+
+    <!-- pricing
+            ----------------------------------------------- -->
+    <section id="pricing" class="s-pricing target-section">
+        <div class="row s-pricing__content">
+
+            <?php if (is_active_sidebar('khater-pricing-content-widget')) {
+                dynamic_sidebar('khater-pricing-content-widget');
             }
-        }
-    </style>
+            ?>
 
 
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="<?= get_theme_file_uri('assets/css/blog.css') ?>" rel="stylesheet">
-</head>
+            <div class="column lg-8 md-12 s-pricing__plans">
+                <div class="row plans block-lg-one-half block-tab-whole">
 
-<body>
 
-    <div class="container">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    <a class="link-secondary" href="#"><?php bloginfo('description'); ?></a>
-                </div>
-                <div class="col-4 text-center">
-                    <a class="blog-header-logo text-dark" href="#"><?php bloginfo('name'); ?></a>
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="link-secondary" href="#" aria-label="Search">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                    </a>
-                    <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
-                </div>
+                    <?php
+
+                    if (is_active_sidebar('khater-pricing-widget')) {
+                        dynamic_sidebar('khater-pricing-widget');
+                    }
+                    if (is_active_sidebar('khater-pricing-free-widget')) {
+                        dynamic_sidebar('khater-pricing-free-widget');
+                    }
+
+                    ?>
+                </div> <!-- end item-plan -->
             </div>
-        </header>
+        </div> <!-- end s-pricing__plans -->
 
-        <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-content-between">
-                <a class="p-2 link-secondary" href="#">World</a>
-                <a class="p-2 link-secondary" href="#">U.S.</a>
-                <a class="p-2 link-secondary" href="#">Technology</a>
-                <a class="p-2 link-secondary" href="#">Design</a>
-                <a class="p-2 link-secondary" href="#">Culture</a>
-                <a class="p-2 link-secondary" href="#">Business</a>
-                <a class="p-2 link-secondary" href="#">Politics</a>
-                <a class="p-2 link-secondary" href="#">Opinion</a>
-                <a class="p-2 link-secondary" href="#">Science</a>
-                <a class="p-2 link-secondary" href="#">Health</a>
-                <a class="p-2 link-secondary" href="#">Style</a>
-                <a class="p-2 link-secondary" href="#">Travel</a>
-            </nav>
-        </div>
-    </div>
+        </div> <!-- end s-pricing__content -->
+    </section> <!-- end pricing -->
 
-    <main class="container">
-        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-                <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+
+    <!-- download
+            ----------------------------------------------- -->
+    <section id="download" class="s-download target-section">
+        <div class="row s-download__header">
+            <div class="column lg-12">
+                <!-- <h2 class="text-display-1">Thousands of People Are Now Using Booth. Join Our Community!</h2>
+                <p class="lead">
+                    Et nihil atque ex. Reiciendis et rerum ut voluptate. Omnis molestiae nemo est.
+                    Ut quis enim rerum quia assumenda repudiandae non cumque qui. Amet repellat
+                    omnis ea. Ultrices pellentesque amet tristique feugiat condimentum integer fames.
+                </p> -->
+                <?php if (is_active_sidebar('khater-download-widget')) {
+                    dynamic_sidebar('khater-download-widget');
+                }
+                ?>
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
-                        <h3 class="mb-0">Featured post</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-success">Design</strong>
-                        <h3 class="mb-0">Post title</h3>
-                        <div class="mb-1 text-muted">Nov 11</div>
-                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-5">
-            <div class="col-md-8">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    From the Firehose
-                </h3>
-
-                <article class="blog-post">
-                    <h2 class="blog-post-title">Sample blog post</h2>
-                    <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-
-                    <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-                    <hr>
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <h2>Blockquotes</h2>
-                    <p>This is an example blockquote in action:</p>
-                    <blockquote class="blockquote">
-                        <p>Quoted text goes here.</p>
-                    </blockquote>
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <h3>Example lists</h3>
-                    <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout. This is an example unordered list:</p>
-                    <ul>
-                        <li>First list item</li>
-                        <li>Second list item with a longer description</li>
-                        <li>Third list item to close it out</li>
-                    </ul>
-                    <p>And this is an ordered list:</p>
-                    <ol>
-                        <li>First list item</li>
-                        <li>Second list item with a longer description</li>
-                        <li>Third list item to close it out</li>
-                    </ol>
-                    <p>And this is a definition list:</p>
-                    <dl>
-                        <dt>HyperText Markup Language (HTML)</dt>
-                        <dd>The language used to describe and define the content of a Web page</dd>
-                        <dt>Cascading Style Sheets (CSS)</dt>
-                        <dd>Used to describe the appearance of Web content</dd>
-                        <dt>JavaScript (JS)</dt>
-                        <dd>The programming language used to build advanced Web sites and applications</dd>
-                    </dl>
-                    <h2>Inline HTML elements</h2>
-                    <p>HTML defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-                    <ul>
-                        <li><strong>To bold text</strong>, use <code class="language-plaintext highlighter-rouge">&lt;strong&gt;</code>.</li>
-                        <li><em>To italicize text</em>, use <code class="language-plaintext highlighter-rouge">&lt;em&gt;</code>.</li>
-                        <li>Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use <code class="language-plaintext highlighter-rouge">&lt;abbr&gt;</code>, with an optional <code class="language-plaintext highlighter-rouge">title</code> attribute for the full phrase.</li>
-                        <li>Citations, like <cite>— Mark Otto</cite>, should use <code class="language-plaintext highlighter-rouge">&lt;cite&gt;</code>.</li>
-                        <li><del>Deleted</del> text should use <code class="language-plaintext highlighter-rouge">&lt;del&gt;</code> and <ins>inserted</ins> text should use <code class="language-plaintext highlighter-rouge">&lt;ins&gt;</code>.</li>
-                        <li>Superscript <sup>text</sup> uses <code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code class="language-plaintext highlighter-rouge">&lt;sub&gt;</code>.</li>
-                    </ul>
-                    <p>Most of these elements are styled by browsers with few modifications on our part.</p>
-                    <h2>Heading</h2>
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <h3>Sub-heading</h3>
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <pre><code>Example code block</code></pre>
-                    <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-                </article>
-
-                <article class="blog-post">
-                    <h2 class="blog-post-title">Another blog post</h2>
-                    <p class="blog-post-meta">December 23, 2020 by <a href="#">Jacob</a></p>
-
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <blockquote>
-                        <p>Longer quote goes here, maybe with some <strong>emphasized text</strong> in the middle of it.</p>
-                    </blockquote>
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <h3>Example table</h3>
-                    <p>And don't forget about tables in these posts:</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Upvotes</th>
-                                <th>Downvotes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Alice</td>
-                                <td>10</td>
-                                <td>11</td>
-                            </tr>
-                            <tr>
-                                <td>Bob</td>
-                                <td>4</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>Charlie</td>
-                                <td>7</td>
-                                <td>9</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Totals</td>
-                                <td>21</td>
-                                <td>23</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-
-                    <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-                </article>
-
-                <article class="blog-post">
-                    <h2 class="blog-post-title">New feature</h2>
-                    <p class="blog-post-meta">December 14, 2020 by <a href="#">Chris</a></p>
-
-                    <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <ul>
-                        <li>First list item</li>
-                        <li>Second list item with a longer description</li>
-                        <li>Third list item to close it out</li>
-                    </ul>
-                    <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-                </article>
-
-                <nav class="blog-pagination" aria-label="Pagination">
-                    <a class="btn btn-outline-primary" href="#">Older</a>
-                    <a class="btn btn-outline-secondary disabled">Newer</a>
-                </nav>
-
-            </div>
-
-            <div class="col-md-4">
-                <div class="position-sticky" style="top: 2rem;">
-                    <div class="p-4 mb-3 bg-light rounded">
-                        <h4 class="fst-italic">About</h4>
-                        <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
-                    </div>
-
-                    <div class="p-4">
-                        <h4 class="fst-italic">Archives</h4>
-                        <ol class="list-unstyled mb-0">
-                            <li><a href="#">March 2021</a></li>
-                            <li><a href="#">February 2021</a></li>
-                            <li><a href="#">January 2021</a></li>
-                            <li><a href="#">December 2020</a></li>
-                            <li><a href="#">November 2020</a></li>
-                            <li><a href="#">October 2020</a></li>
-                            <li><a href="#">September 2020</a></li>
-                            <li><a href="#">August 2020</a></li>
-                            <li><a href="#">July 2020</a></li>
-                            <li><a href="#">June 2020</a></li>
-                            <li><a href="#">May 2020</a></li>
-                            <li><a href="#">April 2020</a></li>
-                        </ol>
-                    </div>
-
-                    <div class="p-4">
-                        <h4 class="fst-italic">Elsewhere</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="#">GitHub</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Facebook</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="blog-footer">
-        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-        <p>
-            <a href="#">Back to top</a>
-        </p>
-    </footer>
+    </section>
 
 
+</section> <!-- end s-content -->
 
-</body>
 
-</html>
+<?php get_footer(); ?>
