@@ -33,23 +33,11 @@
 
                     ]);
 
-
-
                     ?>
-
-
-
 
                 </div>
 
                 <div class="column lg-6 stack-on-900 end">
-                    <!-- <ul class="s-footer__site-links">
-                        <li><a class="smoothscroll" href="#home" title="intro">Intro</a></li>
-                        <li><a class="smoothscroll" href="#about" title="about">About</a></li>
-                        <li><a class="smoothscroll" href="#testimonials" title="reviews">Reviews</a></li>
-                        <li><a class="smoothscroll" href="#pricing" title="pricing">Pricing</a></li>
-                        <li><a class="smoothscroll" href="#download" title="download">Download</a></li>
-                    </ul> -->
 
                     <?php
                     wp_nav_menu([
@@ -65,11 +53,7 @@
                     }
 
                     ?>
-                    <!-- 
-                    <p class="s-footer__contact">
-                        Do you have a question? Send us a word: <br>
-                        <a href="mailto:#0" class="s-footer__mail-link">support@yoursite.com</a>
-                    </p> -->
+
 
                     <div class="ss-copyright">
 

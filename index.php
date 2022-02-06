@@ -19,6 +19,9 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
 <section id="content" class="s-content">
 
 
+
+
+
     <!-- intro
             ----------------------------------------------- -->
     <section id="intro" class="s-intro target-section">
@@ -112,35 +115,23 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
 
         <!-- stats -->
         <div class="row block-lg-one-fourth block-tab-one-half block-stack s-about__stats">
-            <?php
-            // if (have_posts()) :
-            //     while (have_posts()) :
-            //         the_post();
-
-            ?>
-
 
             <div class="column s-about__stats-item">
-                <div class="s-about__stats-count">554<span>k</span></div>
-                <h5>Total Downloads</h5>
+                <div class="s-about__stats-count stats-count-total-num"><?= get_theme_mod('stats-count-total-num'); ?><span><?= get_theme_mod('stats-count-total-symbol'); ?></span></div>
+                <h5><?= get_theme_mod('stats-count-total-desc'); ?></h5>
             </div>
 
-            <?php
-            //     endwhile;
-            // endif;
-            ?>
-
             <div class="column s-about__stats-item">
-                <div class="s-about__stats-count">22<span>k</span></div>
-                <h5>Daily Visitors</h5>
+                <div class="s-about__stats-count stats-count-visitor-num"><?= get_theme_mod('stats-count-visitor-num'); ?><span><?= get_theme_mod('stats-count-visitor-symbol'); ?></span></div>
+                <h5><?= get_theme_mod('stats-count-visitor-desc'); ?></h5>
             </div>
             <div class="column s-about__stats-item">
-                <div class="s-about__stats-count">99<span>%</span></div>
-                <h5>Positive Rating</h5>
+                <div class="s-about__stats-count stats-count-rating-num"><?= get_theme_mod('stats-count-rating-num'); ?><span><?= get_theme_mod('stats-count-rating-symbol'); ?></span></div>
+                <h5><?= get_theme_mod('stats-count-rating-desc'); ?></h5>
             </div>
             <div class="column s-about__stats-item">
-                <div class="s-about__stats-count">526<span>k</span></div>
-                <h5>Happy Users</h5>
+                <div class="s-about__stats-count stats-count-users-num"><?= get_theme_mod('stats-count-users-num'); ?><span><?= get_theme_mod('stats-count-users-symbol'); ?></span></div>
+                <h5><?= get_theme_mod('stats-count-users-desc'); ?></h5>
             </div>
 
         </div> <!-- end stats -->
@@ -170,10 +161,6 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
                         <div class="swiper-wrapper">
                             <?php
                             if ($queryAbout->have_posts()) :
-                                // while (have_posts()) :
-                                //     the_post();
-
-
                                 while ($queryAbout->have_posts()) :
                                     $queryAbout->the_post();
 
@@ -217,18 +204,14 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
             <div class="column lg-12">
 
                 <div class="s-about__screens">
-
-
-                    <div class="s-about__screen">
-                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-03.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-03.png') ?> 1x,<?= get_theme_file_uri('assets/images/screens/screen-03@2x.png') ?> 2x" alt="">
+                    <div class="s-about__screen about-screen-3'">
+                        <img src="<?= get_theme_mod('about-screen-3'); ?>">
                     </div>
-
-
-                    <div class="s-about__screen">
-                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-02.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-02.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-02@2x.png') ?> 2x" alt="">
+                    <div class="s-about__screen about-screen-2">
+                        <img src="<?= get_theme_mod('about-screen-2'); ?>">
                     </div>
-                    <div class="s-about__screen">
-                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?>>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?> 1x,<?= get_theme_file_uri('assets/images/screens/screen-01@2x.png') ?> 2x" alt="">
+                    <div class="s-about__screen about-screen-1">
+                        <img src="<?= get_theme_mod('about-screen-1'); ?>">
                     </div>
                 </div>
 
@@ -271,9 +254,9 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
 
                 <div class="column s-about__howto-screens-block">
 
-                    <div class="s-about__howto-screens">
-                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-01.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-01@2x.png') ?> 2x" alt="">
-                        <img src="<?= get_theme_file_uri('assets/images/screens/screen-04.png') ?>" srcset="<?= get_theme_file_uri('assets/images/screens/screen-04.png') ?> 1x, <?= get_theme_file_uri('assets/images/screens/screen-04@2x.png') ?> 2x" alt="">
+                    <div class="s-about__howto-screens about-screen-4">
+                        <img src="<?= get_theme_mod('about-screen-1'); ?>">
+                        <img src="<?= get_theme_mod('about-screen-4'); ?>">
                     </div>
 
                 </div>
@@ -423,6 +406,21 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
                 <div class="swiper-container s-testimonials__slider">
 
                     <div class="swiper-wrapper">
+
+
+                        <?php
+                        $fields = get_fields();
+                        if ($fields) : ?>
+                            <ul>
+                                <?php foreach ($fields as $name => $value) : ?>
+                                    <li><b><?php echo $name; ?></b> <?php echo $value; ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif;
+                        ?>
+
+
+
 
                         <div class="s-testimonials__slide swiper-slide">
                             <div class="s-testimonials__author">
