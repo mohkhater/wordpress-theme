@@ -213,6 +213,18 @@ function khater_register_sidebars()
         'after_title'  => '',
 
     ]);
+
+
+    register_sidebar([
+        'id' => 'khater-features-widget',
+        'name' => 'Features Widget',
+        'description' => '',
+        'before_widget'  => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'  => '',
+
+    ]);
 }
 
 add_action('widgets_init', 'khater_register_sidebars');
@@ -249,6 +261,9 @@ function khater_register_widgets()
 
     include __DIR__ . '/inc/widgets/swiper-widget.php';
     register_widget('Swiper_Widget');
+
+    include __DIR__ . '/inc/widgets/features-widget.php';
+    register_widget('Features_Widget');
 }
 
 add_action('widgets_init', 'khater_register_widgets');

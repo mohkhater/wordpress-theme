@@ -27,7 +27,7 @@ class Swiper_Widget extends WP_Widget
 
         printf(
             '<p>
-        <label for="%s">Title</label>
+        <label for="%s">Job Title</label>
         <input type=""text" name="%s" id="%s" value="%s" class="widefat"/>
         </p>',
             $this->get_field_id('job'),
