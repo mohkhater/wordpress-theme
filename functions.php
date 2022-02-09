@@ -201,6 +201,18 @@ function khater_register_sidebars()
         'before_title'  => '<h3 class="h2">',
         'after_title'  => '</h3>',
     ]);
+
+
+    register_sidebar([
+        'id' => 'khater-swiper-widget',
+        'name' => 'Swiper Widget',
+        'description' => '',
+        'before_widget'  => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'  => '',
+
+    ]);
 }
 
 add_action('widgets_init', 'khater_register_sidebars');
@@ -234,6 +246,9 @@ function khater_register_widgets()
 
     include __DIR__ . '/inc/widgets/pricing-content-widget.php';
     register_widget('Pricing_Content_Widget');
+
+    include __DIR__ . '/inc/widgets/swiper-widget.php';
+    register_widget('Swiper_Widget');
 }
 
 add_action('widgets_init', 'khater_register_widgets');

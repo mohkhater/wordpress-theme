@@ -392,108 +392,45 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
 
     <!-- testimonials
             ----------------------------------------------- -->
-    <section id="testimonials" class="s-testimonials">
 
-        <div class="row narrow text-center s-testimonials__header">
-            <div class="column lg-12">
-                <h3 class="h2">What Our Users Have To Say.</h3>
+    <?php if (is_active_sidebar('khater-swiper-widget')) { ?>
+        <section id="testimonials" class="s-testimonials">
+            <div class="row narrow text-center s-testimonials__header">
+                <div class="column lg-12">
+                    <h3 class="h2">What Our Users Have To Say.</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="row s-testimonials__content">
-            <div class="column lg-12">
+            <div class="row s-testimonials__content">
+                <div class="column lg-12">
 
-                <div class="swiper-container s-testimonials__slider">
+                    <div class="swiper-container s-testimonials__slider">
 
-                    <div class="swiper-wrapper">
+                        <div class="swiper-wrapper">
 
+                            <?php
 
-                        <?php
-                        $fields = get_fields();
-                        if ($fields) : ?>
-                            <ul>
-                                <?php foreach ($fields as $name => $value) : ?>
-                                    <li><b><?php echo $name; ?></b> <?php echo $value; ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif;
-                        ?>
+                            dynamic_sidebar('khater-swiper-widget');
+
+                            ?>
 
 
 
 
-                        <div class="s-testimonials__slide swiper-slide">
-                            <div class="s-testimonials__author">
-                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-02.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
-                                <cite class="s-testimonials__cite">
-                                    <strong>Tim Cook</strong>
-                                    <span>CEO, Apple</span>
-                                </cite>
-                            </div>
-                            <p>
-                                Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem.
-                                Explicabo a quaerat sint autem dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga rem nihil nostrum.
-                                Laudantium quia consequatur molestias.
-                            </p>
-                        </div> <!-- end s-testimonials__slide -->
-
-                        <div class="s-testimonials__slide swiper-slide">
-                            <div class="s-testimonials__author">
-                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-03.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
-                                <cite class="s-testimonials__cite">
-                                    <strong>Sundar Pichai</strong>
-                                    <span>CEO, Google</span>
-                                </cite>
-                            </div>
-                            <p>
-                                Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
-                                Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
-                                Quasi voluptas eius distinctio. Atque eos maxime.
-                            </p>
-                        </div> <!-- end s-testimonials__slide -->
-
-                        <div class="s-testimonials__slide swiper-slide">
-                            <div class="s-testimonials__author">
-                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-01.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
-                                <cite class="s-testimonials__cite">
-                                    <strong>Satya Nadella</strong>
-                                    <span>CEO, Microsoft</span>
-                                </cite>
-                            </div>
-                            <p>
-                                Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                                Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
-                                Voluptatem dignissimos ut.
-                            </p>
-                        </div> <!-- end s-testimonials__slide -->
-
-                        <div class="s-testimonials__slide swiper-slide">
-                            <div class="s-testimonials__author">
-                                <img src="<?= get_theme_file_uri('assets/images/avatars/user-06.jpg') ?>" alt="Author image" class="s-testimonials__avatar">
-                                <cite class="s-testimonials__cite">
-                                    <strong>Jeff Bezos</strong>
-                                    <span>CEO, Amazon</span>
-                                </cite>
-                            </div>
-                            <p>
-                                Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis
-                                quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit.
-                                Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                            </p>
-                        </div> <!-- end s-testimonials__slide -->
-
-                    </div> <!-- end swiper-wrapper -->
-
-                    <div class="swiper-pagination"></div>
-
-                </div> <!-- end swiper-container -->
-
-            </div> <!-- end column -->
-        </div> <!-- end s-testimonials__content -->
-
-    </section> <!-- end testimonials -->
 
 
+                        </div> <!-- end swiper-wrapper -->
+
+                        <div class="swiper-pagination"></div>
+
+                    </div> <!-- end swiper-container -->
+
+                </div> <!-- end column -->
+            </div> <!-- end s-testimonials__content -->
+
+        </section> <!-- end testimonials -->
+
+    <?php  }  ?>
     <!-- pricing
             ----------------------------------------------- -->
     <section id="pricing" class="s-pricing target-section">
@@ -532,12 +469,6 @@ $queryApp = new WP_Query(array('category_name' => 'app'));
     <section id="download" class="s-download target-section">
         <div class="row s-download__header">
             <div class="column lg-12">
-                <!-- <h2 class="text-display-1">Thousands of People Are Now Using Booth. Join Our Community!</h2>
-                <p class="lead">
-                    Et nihil atque ex. Reiciendis et rerum ut voluptate. Omnis molestiae nemo est.
-                    Ut quis enim rerum quia assumenda repudiandae non cumque qui. Amet repellat
-                    omnis ea. Ultrices pellentesque amet tristique feugiat condimentum integer fames.
-                </p> -->
                 <?php if (is_active_sidebar('khater-download-widget')) {
                     dynamic_sidebar('khater-download-widget');
                 }
